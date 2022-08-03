@@ -37,7 +37,7 @@ logAge(true);
 const buttonBoolean = document.querySelector("#button2");
 
 const calculatePrice = (orginalPrice: number, hasDiscount: boolean) => {
- return hasDiscount ? orginalPrice * 0.8 : orginalPrice;
+  return hasDiscount ? orginalPrice * 0.8 : orginalPrice;
 };
 
 buttonBoolean.addEventListener("click", () => {
@@ -46,3 +46,28 @@ buttonBoolean.addEventListener("click", () => {
     new URLSearchParams(window.location.search).get("discount") === "true";
   console.log(calculatePrice(orginalPrice, hasDiscount));
 });
+
+//array in practice
+
+const tasksContainer: HTMLElement = document.querySelector("#tasks3");
+const tasksInput: HTMLInputElement = document.querySelector("#input3");
+const tasksButton: HTMLButtonElement = document.querySelector("#button3");
+
+const tasks: string[] = ["wyrzucic śmieci", "umyć zęby", "napraw kod"];
+
+const renderTasks = () => {
+  tasksContainer.innerHTML = "";
+  tasks.forEach((t) => {
+    const taskElement: HTMLLIElement = document.createElement("li");
+    taskElement.innerText = t;
+    tasksContainer.appendChild(taskElement);
+  });
+};
+
+tasksButton.addEventListener("click", (e: Event) => {
+  e.preventDefault();
+  tasks.push(tasksInput.value);
+  renderTasks();
+});
+
+renderTasks();

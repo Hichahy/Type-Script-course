@@ -35,3 +35,22 @@ buttonBoolean.addEventListener("click", () => {
     const hasDiscount = new URLSearchParams(window.location.search).get("discount") === "true";
     console.log(calculatePrice(orginalPrice, hasDiscount));
 });
+//array in practice
+const tasksContainer = document.querySelector("#tasks3");
+const tasksInput = document.querySelector("#input3");
+const tasksButton = document.querySelector("#button3");
+const tasks = ["wyrzucic śmieci", "umyć zęby", "napraw kod"];
+const renderTasks = () => {
+    tasksContainer.innerHTML = "";
+    tasks.forEach((t) => {
+        const taskElement = document.createElement("li");
+        taskElement.innerText = t;
+        tasksContainer.appendChild(taskElement);
+    });
+};
+tasksButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    tasks.push(tasksInput.value);
+    renderTasks();
+});
+renderTasks();
