@@ -5,11 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TypeScript</title>
+    <style>
+      div {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+        border: 1px solid black;
+        padding: 50px;
+        border-radius: 10px;
+        background-color: rgba(128, 128, 128, 0.139);
+      }
+      button {
+        width: 100px;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      input {
+        width: 300px;
+        margin-bottom: 5px;
+      }
+    </style>
   </head>
+
   <body>
-    <input id="input1" type="number" />
-    <input id="input2" type="number" />
-    <button>Add</button>
+    <div>
+      types in practice
+      <input id="input1" type="number" />
+      <input id="input2" type="number" />
+      <button id="button1">Add</button>
+    </div>
+    <div>
+      boolean in practice
+      <button id="button2">Buy</button>
+    </div>
+
     <script src="dist/app.js"></script>
   </body>
 </html>
