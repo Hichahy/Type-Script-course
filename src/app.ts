@@ -47,26 +47,50 @@ buttonBoolean.addEventListener("click", () => {
   console.log(calculatePrice(orginalPrice, hasDiscount));
 });
 
-//array in practice
-
 const tasksContainer: HTMLElement = document.querySelector("#tasks3");
 const tasksInput: HTMLInputElement = document.querySelector("#input3");
 const tasksButton: HTMLButtonElement = document.querySelector("#button3");
 
-const tasks: string[] = ["wyrzucic śmieci", "umyć zęby", "napraw kod"];
+//array in practice
+// const tasks: string[] = ["wyrzucic śmieci", "umyć zęby", "napraw kod"];
+
+//object in practice
+const tasks: { name: string; done: boolean }[] = [
+  { name: "wyrzucic śmieci", done: false },
+  { name: "umyć zęby", done: true },
+  { name: "napraw kod", done: false },
+];
 
 const renderTasks = () => {
   tasksContainer.innerHTML = "";
-  tasks.forEach((t) => {
+  tasks.forEach((t, index) => {
     const taskElement: HTMLLIElement = document.createElement("li");
-    taskElement.innerText = t;
+    // taskElement.innerText = t.name;
+    // tasksContainer.appendChild(taskElement);
+    const labelElement: HTMLLabelElement = document.createElement("label");
+    const id: string = `task-${index}`;
+    labelElement.innerText = t.name;
+    labelElement.setAttribute("for", id);
+
+    const checkboxElement: HTMLInputElement = document.createElement("input");
+    checkboxElement.type = "checkbox";
+    checkboxElement.name = t.name;
+    checkboxElement.id = id;
+    checkboxElement.addEventListener("change", () => {
+      t.done = !t.done;
+    });
+
+    taskElement.appendChild(labelElement);
+    taskElement.appendChild(checkboxElement);
+
     tasksContainer.appendChild(taskElement);
+    checkboxElement.checked = t.done;
   });
 };
 
 tasksButton.addEventListener("click", (e: Event) => {
   e.preventDefault();
-  tasks.push(tasksInput.value);
+  tasks.push({ name: tasksInput.value, done: false });
   renderTasks();
 });
 
