@@ -38,12 +38,33 @@ buttonBoolean.addEventListener("click", () => {
 const tasksContainer = document.querySelector("#tasks3");
 const tasksInput = document.querySelector("#input3");
 const tasksButton = document.querySelector("#button3");
+const categoriesContainer = document.querySelector("#categories");
+let selectedCategory;
 const categories = ["general", "work", "gym", "hobby"];
 const tasks = [
     { name: "wyrzucic śmieci", done: false, category: "gym" },
     { name: "umyć zęby", done: true, category: "hobby" },
     { name: "napraw kod", done: false, category: "work" },
 ];
+const renderCategories = () => {
+    categories.forEach((c) => {
+        const categoryElement = document.createElement("li");
+        const radioInputElement = document.createElement("input");
+        radioInputElement.type = "radio";
+        radioInputElement.name = "category";
+        radioInputElement.value = c;
+        radioInputElement.id = `category-${c}`;
+        radioInputElement.addEventListener("change", () => {
+            selectedCategory = c;
+        });
+        const labelElement = document.createElement("label");
+        labelElement.setAttribute("for", `category-${c}`);
+        labelElement.innerText = c;
+        categoryElement.appendChild(radioInputElement);
+        categoryElement.appendChild(labelElement);
+        categoriesContainer.appendChild(categoryElement);
+    });
+};
 const renderTasks = () => {
     tasksContainer.innerHTML = "";
     tasks.forEach((t, index) => {
@@ -71,8 +92,15 @@ const renderTasks = () => {
     });
 };
 tasksButton.addEventListener("click", (e) => {
+    const selectedRadioElement = document.querySelector("input[type='radio']:checked");
+    // const selectedCategory: Category = selectedRadioElement.value as Category; //as mean you tell ts you are sure that's category and ts trust you
     e.preventDefault();
-    tasks.push({ name: tasksInput.value, done: false });
+    tasks.push({
+        name: tasksInput.value,
+        done: false,
+        category: selectedCategory,
+    });
     renderTasks();
 });
+renderCategories();
 renderTasks();
