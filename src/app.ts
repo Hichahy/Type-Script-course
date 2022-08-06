@@ -55,16 +55,29 @@ const tasksButton: HTMLButtonElement = document.querySelector("#button3");
 // const tasks: string[] = ["wyrzucic śmieci", "umyć zęby", "napraw kod"];
 
 //object in practice
-const tasks: { name: string; done: boolean }[] = [
-  { name: "wyrzucic śmieci", done: false },
-  { name: "umyć zęby", done: true },
-  { name: "napraw kod", done: false },
+
+//interface
+interface Task {
+  name: string;
+  done: boolean;
+  category?: string;
+}
+
+const categories: string[] = ["general", "work", "gym", "hobby"];
+
+const tasks: Task[] = [
+  { name: "wyrzucic śmieci", done: false, category: "gym" },
+  { name: "umyć zęby", done: true, category: "hobby" },
+  { name: "napraw kod", done: false, category: "work" },
 ];
 
 const renderTasks = () => {
   tasksContainer.innerHTML = "";
   tasks.forEach((t, index) => {
     const taskElement: HTMLLIElement = document.createElement("li");
+    if (t.category) {
+      taskElement.classList.add(t.category);
+    }
     // taskElement.innerText = t.name;
     // tasksContainer.appendChild(taskElement);
     const labelElement: HTMLLabelElement = document.createElement("label");
@@ -91,6 +104,7 @@ const renderTasks = () => {
 tasksButton.addEventListener("click", (e: Event) => {
   e.preventDefault();
   tasks.push({ name: tasksInput.value, done: false });
+
   renderTasks();
 });
 
