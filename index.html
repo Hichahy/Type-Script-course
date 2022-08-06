@@ -22,8 +22,31 @@
       }
 
       input {
-        width: 300px;
         margin-bottom: 5px;
+      }
+
+      .hobby {
+        color: pink;
+      }
+
+      .gym {
+        color: red;
+      }
+
+      .work {
+        color: yellow;
+      }
+
+      .general {
+        color: black;
+      }
+
+      ul {
+        padding: 0;
+      }
+
+      li {
+        list-style: none;
       }
     </style>
   </head>
@@ -44,6 +67,29 @@
       <form autocomplete="off">
         <label for="name">Task</label>
         <input type="text" id="input3" />
+        <ul id="categories">
+          <li>
+            <input
+              type="radio"
+              name="category"
+              value="general"
+              id="cat-general"
+            />
+            <label for="cat-general">general</label>
+          </li>
+          <li>
+            <input type="radio" name="category" value="gym" id="cat-gym" />
+            <label for="cat-gym">gym</label>
+          </li>
+          <li>
+            <input type="radio" name="category" value="work" id="cat-work" />
+            <label for="cat-work">work</label>
+          </li>
+          <li>
+            <input type="radio" name="category" value="hobby" id="cat-hobby" />
+            <label for="cat-hobby">hobby</label>
+          </li>
+        </ul>
         <button id="button3">Add</button>
         <p>Todo:</p>
         <ul id="tasks3"></ul>

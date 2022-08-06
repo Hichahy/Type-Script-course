@@ -38,18 +38,19 @@ buttonBoolean.addEventListener("click", () => {
 const tasksContainer = document.querySelector("#tasks3");
 const tasksInput = document.querySelector("#input3");
 const tasksButton = document.querySelector("#button3");
-//array in practice
-// const tasks: string[] = ["wyrzucic śmieci", "umyć zęby", "napraw kod"];
-//object in practice
+const categories = ["general", "work", "gym", "hobby"];
 const tasks = [
-    { name: "wyrzucic śmieci", done: false },
-    { name: "umyć zęby", done: true },
-    { name: "napraw kod", done: false },
+    { name: "wyrzucic śmieci", done: false, category: "gym" },
+    { name: "umyć zęby", done: true, category: "hobby" },
+    { name: "napraw kod", done: false, category: "work" },
 ];
 const renderTasks = () => {
     tasksContainer.innerHTML = "";
     tasks.forEach((t, index) => {
         const taskElement = document.createElement("li");
+        if (t.category) {
+            taskElement.classList.add(t.category);
+        }
         // taskElement.innerText = t.name;
         // tasksContainer.appendChild(taskElement);
         const labelElement = document.createElement("label");
