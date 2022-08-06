@@ -60,7 +60,8 @@ const tasksButton: HTMLButtonElement = document.querySelector("#button3");
 interface Task {
   name: string;
   done: boolean;
-  category?: string;
+  // category?: string;
+  category?: "general" | "work" | "gym" | "hobby"; //literal type + union type
 }
 
 const categories: string[] = ["general", "work", "gym", "hobby"];
