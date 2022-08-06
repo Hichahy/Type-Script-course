@@ -50,27 +50,56 @@ buttonBoolean.addEventListener("click", () => {
 const tasksContainer: HTMLElement = document.querySelector("#tasks3");
 const tasksInput: HTMLInputElement = document.querySelector("#input3");
 const tasksButton: HTMLButtonElement = document.querySelector("#button3");
+const categoriesContainer: HTMLElement = document.querySelector("#categories");
 
 //array in practice
 // const tasks: string[] = ["wyrzucic śmieci", "umyć zęby", "napraw kod"];
 
 //object in practice
 
+//type alias
+type Category = "general" | "work" | "gym" | "hobby";
+
 //interface
 interface Task {
   name: string;
   done: boolean;
   // category?: string;
-  category?: "general" | "work" | "gym" | "hobby"; //literal type + union type
+  // category?: "general" | "work" | "gym" | "hobby"; //literal type + union type
+  category?: Category; //type alias
 }
 
-const categories: string[] = ["general", "work", "gym", "hobby"];
+let selectedCategory: Category;
+const categories: Category[] = ["general", "work", "gym", "hobby"];
 
 const tasks: Task[] = [
   { name: "wyrzucic śmieci", done: false, category: "gym" },
   { name: "umyć zęby", done: true, category: "hobby" },
   { name: "napraw kod", done: false, category: "work" },
 ];
+
+const renderCategories = () => {
+  categories.forEach((c) => {
+    const categoryElement: HTMLElement = document.createElement("li");
+    const radioInputElement: HTMLInputElement = document.createElement("input");
+    radioInputElement.type = "radio";
+    radioInputElement.name = "category";
+    radioInputElement.value = c;
+    radioInputElement.id = `category-${c}`;
+    radioInputElement.addEventListener("change", () => {
+      selectedCategory = c;
+    });
+
+    const labelElement: HTMLLabelElement = document.createElement("label");
+    labelElement.setAttribute("for", `category-${c}`);
+    labelElement.innerText = c;
+
+    categoryElement.appendChild(radioInputElement);
+    categoryElement.appendChild(labelElement);
+
+    categoriesContainer.appendChild(categoryElement);
+  });
+};
 
 const renderTasks = () => {
   tasksContainer.innerHTML = "";
@@ -103,10 +132,19 @@ const renderTasks = () => {
 };
 
 tasksButton.addEventListener("click", (e: Event) => {
+  const selectedRadioElement: HTMLInputElement = document.querySelector(
+    "input[type='radio']:checked"
+  );
+  // const selectedCategory: Category = selectedRadioElement.value as Category; //as mean you tell ts you are sure that's category and ts trust you
+
   e.preventDefault();
-  tasks.push({ name: tasksInput.value, done: false });
+  tasks.push({
+    name: tasksInput.value,
+    done: false,
+    category: selectedCategory,
+  });
 
   renderTasks();
 });
-
+renderCategories();
 renderTasks();
