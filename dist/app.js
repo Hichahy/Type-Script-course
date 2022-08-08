@@ -55,7 +55,7 @@ const categoriesContainer = document.querySelector("#categories");
 //   category?: Category; //type alias
 // }
 let selectedCategory;
-const categories = ["general", "work", "gym", "hobby"];
+const categories = ["general", "work", "gym", "hobby", "social"];
 const tasks = [
     { name: "wyrzucic śmieci", done: false, category: "gym" },
     { name: "umyć zęby", done: true, category: "hobby" },
@@ -77,3 +77,14 @@ tasksButton.addEventListener("click", (e) => {
 });
 renderCategories(categories, categoriesContainer, updateSelectedCategory);
 renderTasks(tasks, tasksContainer);
+//unkown type
+let get = (response) => response;
+const logFixed = (v) => {
+    console.log(v.toFixed());
+};
+logFixed(2.4);
+let value = get(2.4);
+if (typeof value === "number") {
+    logFixed(value);
+}
+// logFixed(get("abc"))
