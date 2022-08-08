@@ -1,3 +1,4 @@
+import { Category } from "./types/types.js";
 import { renderTasks } from "./helpers/render-tasks.helper.js";
 import { renderCategories } from "./helpers/render-categories.helper.js";
 //basic types number, sting
@@ -55,11 +56,17 @@ const categoriesContainer = document.querySelector("#categories");
 //   category?: Category; //type alias
 // }
 let selectedCategory;
-const categories = ["general", "work", "gym", "hobby", "social"];
+const categories = [
+    Category.GENERAL,
+    Category.WORK,
+    Category.GYM,
+    Category.HOBBY,
+    Category.SOCIAL,
+];
 const tasks = [
-    { name: "wyrzucic śmieci", done: false, category: "gym" },
-    { name: "umyć zęby", done: true, category: "hobby" },
-    { name: "napraw kod", done: false, category: "work" },
+    { name: "wyrzucic śmieci", done: false, category: Category.GYM },
+    { name: "umyć zęby", done: true, category: Category.HOBBY },
+    { name: "napraw kod", done: false, category: Category.WORK },
 ];
 const updateSelectedCategory = (newCategory) => {
     selectedCategory = newCategory;
