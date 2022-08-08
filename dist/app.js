@@ -61,6 +61,9 @@ const tasks = [
     { name: "umyć zęby", done: true, category: "hobby" },
     { name: "napraw kod", done: false, category: "work" },
 ];
+const updateSelectedCategory = (newCategory) => {
+    selectedCategory = newCategory;
+};
 tasksButton.addEventListener("click", (e) => {
     const selectedRadioElement = document.querySelector("input[type='radio']:checked");
     // const selectedCategory: Category = selectedRadioElement.value as Category; //as mean you tell ts you are sure that's category and ts trust you
@@ -72,5 +75,5 @@ tasksButton.addEventListener("click", (e) => {
     });
     renderTasks(tasks, tasksContainer);
 });
-renderCategories(categories, categoriesContainer, selectedCategory);
+renderCategories(categories, categoriesContainer, updateSelectedCategory);
 renderTasks(tasks, tasksContainer);

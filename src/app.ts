@@ -82,6 +82,10 @@ const tasks: Task[] = [
   { name: "napraw kod", done: false, category: "work" },
 ];
 
+const updateSelectedCategory = (newCategory: Category) => {
+  selectedCategory = newCategory;
+};
+
 tasksButton.addEventListener("click", (e: Event) => {
   const selectedRadioElement: HTMLInputElement = document.querySelector(
     "input[type='radio']:checked"
@@ -97,5 +101,5 @@ tasksButton.addEventListener("click", (e: Event) => {
 
   renderTasks(tasks, tasksContainer);
 });
-renderCategories( categories, categoriesContainer, selectedCategory);
+renderCategories(categories, categoriesContainer, updateSelectedCategory);
 renderTasks(tasks, tasksContainer);
