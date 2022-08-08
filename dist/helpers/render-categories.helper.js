@@ -1,19 +1,20 @@
+import { Category } from "../types/types.js";
 const handleCategoryChange = (category) => {
-    if (category === "general") {
+    if (category === Category.GENERAL) {
         console.log("zmiana na general)");
     }
-    else if (category === "gym") {
+    else if (category === Category.GYM) {
         alert("lecisz na silke");
     }
-    else if (category === "hobby") {
+    else if (category === Category.HOBBY) {
         document.body.style.background = "red";
     }
-    else if (category === "work") {
+    else if (category === Category.WORK) {
         console.log("praca");
         alert("paraca praca!");
         document.body.style.background = "pink";
     }
-    else if (category === "social") {
+    else if (category === Category.SOCIAL) {
         document.body.style.background = "yellow";
     }
     else {
