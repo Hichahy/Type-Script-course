@@ -1,4 +1,4 @@
-import { Category } from "./types/types.js";
+import { Task, Category } from "./types/types.js";
 import { renderTasks } from "./helpers/render-tasks.helper.js";
 import { renderCategories } from "./helpers/render-categories.helper.js";
 //basic types number, sting
@@ -64,9 +64,9 @@ const categories = [
     Category.SOCIAL,
 ];
 const tasks = [
-    { name: "wyrzucic śmieci", done: false, category: Category.GYM },
-    { name: "umyć zęby", done: true, category: Category.HOBBY },
-    { name: "napraw kod", done: false, category: Category.WORK },
+    new Task("wyrzucic smieci", false, Category.HOBBY),
+    new Task("cos tam zrobic", true, Category.WORK),
+    new Task("jazda na rower", false),
 ];
 const updateSelectedCategory = (newCategory) => {
     selectedCategory = newCategory;
@@ -74,12 +74,11 @@ const updateSelectedCategory = (newCategory) => {
 tasksButton.addEventListener("click", (e) => {
     const selectedRadioElement = document.querySelector("input[type='radio']:checked");
     // const selectedCategory: Category = selectedRadioElement.value as Category; //as mean you tell ts you are sure that's category and ts trust you
+    const addTask = (task) => {
+        tasks.push(task);
+    };
     e.preventDefault();
-    tasks.push({
-        name: tasksInput.value,
-        done: false,
-        category: selectedCategory,
-    });
+    addTask(new Task(tasksInput.value, false, selectedCategory));
     renderTasks(tasks, tasksContainer);
 });
 renderCategories(categories, categoriesContainer, updateSelectedCategory);
@@ -103,3 +102,7 @@ newTask = {
     name: "nowy task",
     status: true,
 };
+//Classes
+const taskClassInstance = new Task("wyjscie na karnawał", false);
+console.log(taskClassInstance);
+taskClassInstance.logCreationDate("yolo");

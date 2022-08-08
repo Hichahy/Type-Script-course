@@ -83,9 +83,9 @@ const categories: Category[] = [
 ];
 
 const tasks: Task[] = [
-  { name: "wyrzucic śmieci", done: false, category: Category.GYM },
-  { name: "umyć zęby", done: true, category: Category.HOBBY },
-  { name: "napraw kod", done: false, category: Category.WORK },
+  new Task("wyrzucic smieci", false, Category.HOBBY),
+  new Task("cos tam zrobic", true, Category.WORK),
+  new Task("jazda na rower", false),
 ];
 
 const updateSelectedCategory = (newCategory: Category) => {
@@ -98,12 +98,13 @@ tasksButton.addEventListener("click", (e: Event) => {
   );
   // const selectedCategory: Category = selectedRadioElement.value as Category; //as mean you tell ts you are sure that's category and ts trust you
 
+  const addTask = (task: Task) => {
+    tasks.push(task);
+  };
+
   e.preventDefault();
-  tasks.push({
-    name: tasksInput.value,
-    done: false,
-    category: selectedCategory,
-  });
+
+  addTask(new Task(tasksInput.value, false, selectedCategory));
 
   renderTasks(tasks, tasksContainer);
 });
@@ -152,3 +153,9 @@ newTask = {
   name: "nowy task",
   status: true,
 };
+
+//Classes
+
+const taskClassInstance = new Task("wyjscie na karnawał", false);
+console.log(taskClassInstance);
+taskClassInstance.logCreationDate("yolo");
