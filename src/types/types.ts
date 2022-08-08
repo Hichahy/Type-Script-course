@@ -4,4 +4,4 @@ export interface Task {
   category?: Category;
 }
 
-export type Category = "general" | "work" | "gym" | "hobby";
+export type Category = "general" | "work" | "gym" | "hobby"| "social";

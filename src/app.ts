@@ -74,7 +74,7 @@ const categoriesContainer: HTMLElement = document.querySelector("#categories");
 // }
 
 let selectedCategory: Category;
-const categories: Category[] = ["general", "work", "gym", "hobby"];
+const categories: Category[] = ["general", "work", "gym", "hobby", "social"];
 
 const tasks: Task[] = [
   { name: "wyrzucic śmieci", done: false, category: "gym" },
@@ -103,3 +103,18 @@ tasksButton.addEventListener("click", (e: Event) => {
 });
 renderCategories(categories, categoriesContainer, updateSelectedCategory);
 renderTasks(tasks, tasksContainer);
+
+//unkown type
+let get = (response: unknown) => response;
+
+const logFixed = (v: number) => {
+  console.log(v.toFixed());
+};
+
+logFixed(2.4);
+
+let value = get(2.4);
+if (typeof value === "number") {
+  logFixed(value);
+}
+// logFixed(get("abc"))
