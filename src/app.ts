@@ -124,3 +124,31 @@ if (typeof value === "number") {
   logFixed(value);
 }
 // logFixed(get("abc"))
+
+//tuples
+type TaskGymTuples = [string, Category, boolean];
+
+const gymTask: TaskGymTuples = ["make biceps", Category.GYM, false];
+const workName = gymTask[0];
+const workCategory = gymTask[1];
+const workDoneStatus = gymTask[2];
+
+//interface bs type alias
+type TaskType = {
+  name: string;
+  status: boolean;
+  category?: Category;
+};
+
+interface TaskTypeInterface {
+  name: string;
+  status: boolean;
+  category?: Category;
+}
+
+let newTask: TaskType;
+
+newTask = {
+  name: "nowy task",
+  status: true,
+};

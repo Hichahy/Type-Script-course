@@ -94,4 +94,12 @@ let value = get(2.4);
 if (typeof value === "number") {
     logFixed(value);
 }
-// logFixed(get("abc"))
+const gymTask = ["make biceps", Category.GYM, false];
+const workName = gymTask[0];
+const workCategory = gymTask[1];
+const workDoneStatus = gymTask[2];
+let newTask;
+newTask = {
+    name: "nowy task",
+    status: true,
+};
